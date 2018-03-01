@@ -6,7 +6,7 @@ import (
 	"unicode"
 )
 
-const undeterminedRate int = 13
+const undeterminedRate int = 23
 const undetermined string = "und"
 const rescale = 0.5
 
@@ -36,6 +36,12 @@ func (info Info) LanguageName() string {
 		return "Portuguese"
 	case "hu":
 		return "Hungarian"
+	case "de":
+		return "German"
+	case "it":
+		return "Italian"
+	case "pl":
+		return "Polish"
 	case undetermined:
 		return "Undetermined language"
 	}
@@ -48,6 +54,9 @@ func FromString(text string) Info {
 		"es": es,
 		"pt": pt,
 		"hu": hu,
+		"de": de,
+		"it": it,
+		"pl": pl,
 	}
 
 	langMatches := make(map[string]int)

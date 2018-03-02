@@ -33,6 +33,30 @@ func TestGermanPhraseUSDI(t *testing.T) {
 		0.95)
 }
 
+func TestGermanMixedEnglish(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"Wenn wir jemand grüßen wollen, sagen wir 'How are you doing?'",
+		"de",
+		0.95)
+}
+
+func TestEnglishMixedGerman(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"If you wanted to greet someone in this language, you'd say 'wie geht es'",
+		"en",
+		0.65)
+}
+
+func TestEnglishMixedUkranian(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"the best thing to say is своїй гідності in my opinon.",
+		"en",
+		0.55)
+}
+
 func TestSpanishPhraseUSDI(t *testing.T) {
 	ensureClassifiedWithConfidence(
 		t,

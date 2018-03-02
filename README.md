@@ -1,4 +1,8 @@
 # getlang
+
+[![GoDoc](https://godoc.org/github.com/rylans/getlang?status.svg)](https://godoc.org/github.com/rylans/getlang)
+
+
 Detect language from text
 
 
@@ -37,6 +41,9 @@ func main(){
 | German         | de        |
 | Russian        | ru        |
 | Ukranian       | uk        |
+
+## Documentation
+[getlang on godoc](https://godoc.org/github.com/rylans/getlang)
 
 ## License
 [MIT](https://github.com/rylans/getlang/blob/master/LICENSE)

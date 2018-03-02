@@ -1,3 +1,7 @@
+// Package getlang provides fast language detection for various languages
+//
+// getlang compares input text to a characteristic profile of each supported language and
+// returns the language that best matches the input text
 package getlang
 
 import (
@@ -12,6 +16,7 @@ const undeterminedRate int = 23
 const undetermined string = "und"
 const rescale = 0.5
 
+// Info is the language detection result
 type Info struct {
 	lang        string
 	probability float64
@@ -58,12 +63,12 @@ func (info Info) LanguageName() string {
 //
 // This function will read all bytes until an EOF is reached
 func FromReader(reader io.Reader) Info {
-  bytes, err := ioutil.ReadAll(reader)
-  if err != nil {
-    panic("Error reading from reader")
-  }
+	bytes, err := ioutil.ReadAll(reader)
+	if err != nil {
+		panic("Error reading from reader")
+	}
 
-  return FromString(string(bytes))
+	return FromString(string(bytes))
 }
 
 // FromString detects the language from the given string
@@ -82,7 +87,7 @@ func FromString(text string) Info {
 
 	langMatches := make(map[string]int)
 	langMatches[undetermined] = 2
-	for k, _ := range langs {
+	for k := range langs {
 		langMatches[k] = 1
 		// Plus one smoothing
 	}
@@ -103,7 +108,7 @@ func softmax(mapping map[string]int) map[string]float64 {
 	for _, v := range mapping {
 		denom += math.Exp(float64(v) * rescale)
 	}
-	for k, _ := range mapping {
+	for k := range mapping {
 		softmaxmap[k] = math.Exp(rescale*float64(mapping[k])) / denom
 	}
 	return softmaxmap

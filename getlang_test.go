@@ -14,7 +14,7 @@ func TestEmptyStringFromReader(t *testing.T) {
 func TestEnglishPhraseFromReader(t *testing.T) {
 	info := FromReader(strings.NewReader("this is the language"))
 	assert.Equal(t, "en", info.LanguageCode())
-	assert.Equal(t, true, info.Confidence() > 0.90)
+	assert.Equal(t, true, info.Confidence() > 0.75)
 }
 
 func TestEnglishPhraseUSDI(t *testing.T) {
@@ -113,12 +113,36 @@ func TestUkranianPhraseUDHR(t *testing.T) {
 		0.95)
 }
 
+func TestKoreanPhrase(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"원래 AB형 사람이 똑똑해",
+		"ko",
+		0.95)
+}
+
+func TestJapanesePhrase(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"何を食べますか",
+		"ja",
+		0.95)
+}
+
+func TestChinesePhrase(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"球的采编网络,记者遍布",
+		"zh",
+		0.95)
+}
+
 func TestNonsense(t *testing.T) {
 	ensureClassifiedWithConfidence(
 		t,
 		"wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z",
 		"und",
-		0.95)
+		0.75)
 }
 
 func ensureClassifiedWithConfidence(t *testing.T, text string, expectedLang string, minConfidence float64) {

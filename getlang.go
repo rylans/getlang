@@ -12,9 +12,12 @@ import (
 	"unicode"
 )
 
-const undeterminedRate int = 23
+const undeterminedRate int = 31
 const undetermined string = "und"
 const rescale = 0.5
+const scriptCountFactor int = 3
+
+type inUnicodeRange func(r rune) bool
 
 // Info is the language detection result
 type Info struct {
@@ -53,6 +56,12 @@ func (info Info) LanguageName() string {
 		return "Russian"
 	case "uk":
 		return "Ukranian"
+	case "ko":
+		return "Korean"
+	case "zh":
+		return "Chinese"
+	case "ja":
+		return "Japanese"
 	case undetermined:
 		return "Undetermined language"
 	}
@@ -85,16 +94,29 @@ func FromString(text string) Info {
 		"uk": uk,
 	}
 
+	scripts := map[string]inUnicodeRange{
+		"ko": isKo,
+		"zh": isZh,
+		"ja": isJa,
+	}
+
 	langMatches := make(map[string]int)
 	langMatches[undetermined] = 2
 	for k := range langs {
-		langMatches[k] = 1
-		// Plus one smoothing
+		langMatches[k] = 0
+	}
+
+	for k := range scripts {
+		langMatches[k] = 0
 	}
 
 	trigs := sortedTrigs(text)
 	for k, v := range langs {
 		matchWith(k, trigs, v, langMatches)
+	}
+
+	for k, v := range scripts {
+		matchScript(k, text, v, langMatches)
 	}
 
 	smx := softmax(langMatches)
@@ -124,6 +146,14 @@ func maxkey(mapping map[string]int) string {
 		}
 	}
 	return key
+}
+
+func matchScript(langname string, text string, predicate inUnicodeRange, matches map[string]int) {
+	for _, rune := range text {
+		if predicate(rune) {
+			matches[langname] += scriptCountFactor
+		}
+	}
 }
 
 func matchWith(langname string, trigs []trigram, langprofile []string, matches map[string]int) {
@@ -204,4 +234,16 @@ func toTrigramChar(ch rune) rune {
 		return ' '
 	}
 	return ch
+}
+
+var isKo = func(r rune) bool {
+	return unicode.Is(unicode.Hangul, r)
+}
+
+var isZh = func(r rune) bool {
+	return unicode.Is(unicode.Han, r)
+}
+
+var isJa = func(r rune) bool {
+	return unicode.Is(unicode.Hiragana, r) || unicode.Is(unicode.Katakana, r)
 }

@@ -41,6 +41,9 @@ func main(){
 | German         | de        |
 | Russian        | ru        |
 | Ukranian       | uk        |
+| Chinese        | zh        |
+| Japanese       | ja        |
+| Korean         | ko        |
 
 ## Documentation
 [getlang on godoc](https://godoc.org/github.com/rylans/getlang)

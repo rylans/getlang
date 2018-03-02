@@ -1,6 +1,8 @@
 package getlang
 
 import (
+	"io"
+	"io/ioutil"
 	"math"
 	"sort"
 	"unicode"
@@ -52,6 +54,19 @@ func (info Info) LanguageName() string {
 	panic("Missing language code " + info.lang)
 }
 
+// FromReader detects the language from an io.Reader
+//
+// This function will read all bytes until an EOF is reached
+func FromReader(reader io.Reader) Info {
+  bytes, err := ioutil.ReadAll(reader)
+  if err != nil {
+    panic("Error reading from reader")
+  }
+
+  return FromString(string(bytes))
+}
+
+// FromString detects the language from the given string
 func FromString(text string) Info {
 	langs := map[string][]string{
 		"en": en,
@@ -66,7 +81,7 @@ func FromString(text string) Info {
 	}
 
 	langMatches := make(map[string]int)
-	langMatches[undetermined] = 0
+	langMatches[undetermined] = 2
 	for k, _ := range langs {
 		langMatches[k] = 1
 		// Plus one smoothing

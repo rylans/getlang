@@ -42,6 +42,10 @@ func (info Info) LanguageName() string {
 		return "Italian"
 	case "pl":
 		return "Polish"
+	case "ru":
+		return "Russian"
+	case "uk":
+		return "Ukranian"
 	case undetermined:
 		return "Undetermined language"
 	}
@@ -57,6 +61,8 @@ func FromString(text string) Info {
 		"de": de,
 		"it": it,
 		"pl": pl,
+		"ru": ru,
+		"uk": uk,
 	}
 
 	langMatches := make(map[string]int)
@@ -109,7 +115,7 @@ func matchWith(langname string, trigs []trigram, langprofile []string, matches m
 
 	for _, trig := range trigs {
 		if _, exists := prof[trig.trigram]; exists {
-			matches[langname]++
+			matches[langname] += trig.count
 		} else {
 			undeterminedCount++
 			if (undeterminedCount % undeterminedRate) == 0 {

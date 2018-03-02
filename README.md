@@ -35,6 +35,8 @@ func main(){
 | Hungarian      | hu        |
 | Polish         | pl        |
 | German         | de        |
+| Russian        | ru        |
+| Ukranian       | uk        |
 
 ## License
 [MIT](https://github.com/rylans/getlang/blob/master/LICENSE)

@@ -53,13 +53,30 @@ func TestHungarianPhraseUDHR(t *testing.T){
     0.95)
 }
 
-func TestItalianUDHR(t *testing.T){
+func TestItalianPhraseUDHR(t *testing.T){
   ensureClassifiedWithConfidence(
     t,
     "Tutti gli esseri umani nascono liberi ed eguali in dignità e diritti",
     "it",
     0.95)
 }
+
+func TestRussianPhraseUDHR(t *testing.T){
+  ensureClassifiedWithConfidence(
+    t,
+    "Все люди рождаются свободными и равными в своем достоинстве и правах",
+    "ru",
+    0.75)
+}
+
+func TestUkranianPhraseUDHR(t *testing.T){
+  ensureClassifiedWithConfidence(
+    t,
+    "Всі люди народжуються вільними і рівними у своїй гідності та правах",
+    "uk",
+    0.95)
+}
+
 
 func TestNonsense(t *testing.T){
   ensureClassifiedWithConfidence(

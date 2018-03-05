@@ -1,6 +1,6 @@
 # getlang
 
-[![GoDoc](https://godoc.org/github.com/rylans/getlang?status.svg)](https://godoc.org/github.com/rylans/getlang) [![Go Report Card](https://goreportcard.com/badge/github.com/rylans/getlang)](https://goreportcard.com/report/github.com/rylans/getlang)
+[![GoDoc](https://godoc.org/github.com/rylans/getlang?status.svg)](https://godoc.org/github.com/rylans/getlang) [![Go Report Card](https://goreportcard.com/badge/github.com/rylans/getlang)](https://goreportcard.com/report/github.com/rylans/getlang) [![Build Status](https://travis-ci.org/rylans/getlang.svg?branch=master)](https://travis-ci.org/rylans/getlang)
 
 
 Detect language from text

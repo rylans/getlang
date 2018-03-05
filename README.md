@@ -40,7 +40,7 @@ func main(){
 | Polish         | pl        |
 | German         | de        |
 | Russian        | ru        |
-| Ukranian       | uk        |
+| Ukrainian      | uk        |
 | Chinese        | zh        |
 | Japanese       | ja        |
 | Korean         | ko        |

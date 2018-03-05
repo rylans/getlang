@@ -49,7 +49,7 @@ func TestEnglishMixedGerman(t *testing.T) {
 		0.65)
 }
 
-func TestEnglishMixedUkranian(t *testing.T) {
+func TestEnglishMixedUkrainian(t *testing.T) {
 	ensureClassifiedWithConfidence(
 		t,
 		"the best thing to say is своїй гідності in my opinon.",
@@ -105,7 +105,7 @@ func TestRussianPhraseUDHR(t *testing.T) {
 		0.55)
 }
 
-func TestUkranianPhraseUDHR(t *testing.T) {
+func TestUkrainianPhraseUDHR(t *testing.T) {
 	ensureClassifiedWithConfidence(
 		t,
 		"Всі люди народжуються вільними і рівними у своїй гідності та правах",

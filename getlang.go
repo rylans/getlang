@@ -55,7 +55,7 @@ func (info Info) LanguageName() string {
 	case "ru":
 		return "Russian"
 	case "uk":
-		return "Ukranian"
+		return "Ukrainian"
 	case "ko":
 		return "Korean"
 	case "zh":

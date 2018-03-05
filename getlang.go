@@ -19,7 +19,31 @@ const undetermined string = "und"
 const rescale = 0.5
 const scriptCountFactor int = 3
 
-type inUnicodeRange func(r rune) bool
+var langs = map[string][]string{
+	"en": en,
+	"es": es,
+	"pt": pt,
+	"hu": hu,
+	"de": de,
+	"it": it,
+	"pl": pl,
+	"ru": ru,
+	"uk": uk,
+	"fr": fr,
+	"ar": ar,
+	"bn": bn,
+	"hi": hi,
+}
+
+var scripts = map[string][]*unicode.RangeTable{
+	"ko": []*unicode.RangeTable{unicode.Hangul},
+	"zh": []*unicode.RangeTable{unicode.Han},
+	"ja": []*unicode.RangeTable{unicode.Hiragana, unicode.Katakana},
+	"el": []*unicode.RangeTable{unicode.Greek},
+	"he": []*unicode.RangeTable{unicode.Hebrew},
+	"gu": []*unicode.RangeTable{unicode.Gujarati},
+	"th": []*unicode.RangeTable{unicode.Thai},
+}
 
 // Info is the language detection result
 type Info struct {
@@ -62,37 +86,8 @@ func FromReader(reader io.Reader) Info {
 
 // FromString detects the language from the given string
 func FromString(text string) Info {
-	langs := map[string][]string{
-		"en": en,
-		"es": es,
-		"pt": pt,
-		"hu": hu,
-		"de": de,
-		"it": it,
-		"pl": pl,
-		"ru": ru,
-		"uk": uk,
-		"fr": fr,
-		"ar": ar,
-		"bn": bn,
-		"hi": hi,
-	}
-
-	scripts := map[string]inUnicodeRange{
-		"ko": isKo,
-		"zh": isZh,
-		"ja": isJa,
-	}
-
 	langMatches := make(map[string]int)
 	langMatches[undetermined] = 2
-	for k := range langs {
-		langMatches[k] = 0
-	}
-
-	for k := range scripts {
-		langMatches[k] = 0
-	}
 
 	trigs := sortedTrigs(text)
 	for k, v := range langs {
@@ -100,7 +95,7 @@ func FromString(text string) Info {
 	}
 
 	for k, v := range scripts {
-		matchScript(k, text, v, langMatches)
+		matchScript(k, text, langMatches, v...)
 	}
 
 	smx := softmax(langMatches)
@@ -132,9 +127,9 @@ func maxkey(mapping map[string]int) string {
 	return key
 }
 
-func matchScript(langname string, text string, predicate inUnicodeRange, matches map[string]int) {
+func matchScript(langname string, text string, matches map[string]int, ranges ...*unicode.RangeTable) {
 	for _, rune := range text {
-		if predicate(rune) {
+		if unicode.In(rune, ranges...) {
 			matches[langname] += scriptCountFactor
 		}
 	}
@@ -218,16 +213,4 @@ func toTrigramChar(ch rune) rune {
 		return ' '
 	}
 	return ch
-}
-
-var isKo = func(r rune) bool {
-	return unicode.Is(unicode.Hangul, r)
-}
-
-var isZh = func(r rune) bool {
-	return unicode.Is(unicode.Han, r)
-}
-
-var isJa = func(r rune) bool {
-	return unicode.Is(unicode.Hiragana, r) || unicode.Is(unicode.Katakana, r)
 }

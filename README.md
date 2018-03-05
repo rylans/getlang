@@ -48,6 +48,10 @@ func main(){
 | Hindi          | hi        |
 | Bengali (Bangla) | bn      |
 | Arabic         | ar        |
+| Greek          | el        |
+| Hebrew         | he        |
+| Gujarati       | gu        |
+| Thai           | th        |
 
 ## Documentation
 [getlang on godoc](https://godoc.org/github.com/rylans/getlang)

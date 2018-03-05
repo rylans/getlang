@@ -223,6 +223,73 @@ func TestHindiPhrase(t *testing.T) {
 		lang)
 }
 
+func TestGreekPhrase(t *testing.T) {
+	text := "Ολοι οι άνθρωποι γεννιούνται ελεύθεροι και ίσοι στην αξιοπρέπεια και στα δικαιώματα"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"el",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Greek",
+		"Ελληνικά")
+}
+
+func TestHebrewPhrase(t *testing.T) {
+	text := "כראוי. בִּדקו את כותרת הדף"
+	lang := "עברית"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"he",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Hebrew",
+		lang)
+}
+
+func TestGujaratiPhrase(t *testing.T) {
+	text := "ગુજરાતી"
+	lang := "ગુજરાતી"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"gu",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Gujarati",
+		lang)
+}
+
+func TestThaiPhrase(t *testing.T) {
+	text := "ไทย ไทยไทย"
+	lang := "ไทย"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"th",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Thai",
+		lang)
+}
+
 func TestNonsense(t *testing.T) {
 	text := "wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z"
 	ensureClassifiedWithConfidence(

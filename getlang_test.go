@@ -18,19 +18,33 @@ func TestEnglishPhraseFromReader(t *testing.T) {
 }
 
 func TestEnglishPhraseUSDI(t *testing.T) {
+	text := "We hold these truths to be self-evident, that all men are created equal"
 	ensureClassifiedWithConfidence(
 		t,
-		"We hold these truths to be self-evident, that all men are created equal",
+		text,
 		"en",
 		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"English",
+		"English")
 }
 
 func TestGermanPhraseUSDI(t *testing.T) {
+	text := "Wir halten diese Wahrheiten für ausgemacht, daß alle Menschen gleich erschaffen worden"
 	ensureClassifiedWithConfidence(
 		t,
-		"Wir halten diese Wahrheiten für ausgemacht, daß alle Menschen gleich erschaffen worden",
+		text,
 		"de",
 		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"German",
+		"Deutsch")
 }
 
 func TestGermanMixedEnglish(t *testing.T) {
@@ -130,27 +144,48 @@ func TestKoreanPhrase(t *testing.T) {
 }
 
 func TestJapanesePhrase(t *testing.T) {
+	text := "何を食べますか"
 	ensureClassifiedWithConfidence(
 		t,
-		"何を食べますか",
+		text,
 		"ja",
 		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Japanese",
+		"日本語")
 }
 
 func TestChinesePhrase(t *testing.T) {
+	text := "球的采编网络,记者遍布"
 	ensureClassifiedWithConfidence(
 		t,
-		"球的采编网络,记者遍布",
+		text,
 		"zh",
 		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Chinese",
+		"中文")
 }
 
 func TestNonsense(t *testing.T) {
+	text := "wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z"
 	ensureClassifiedWithConfidence(
 		t,
-		"wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z",
+		text,
 		"und",
 		0.75)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Unknown language",
+		"")
 }
 
 func ensureClassifiedWithConfidence(t *testing.T, text string, expectedLang string, minConfidence float64) {
@@ -158,4 +193,11 @@ func ensureClassifiedWithConfidence(t *testing.T, text string, expectedLang stri
 
 	assert.Equal(t, expectedLang, info.LanguageCode(), "Misclassified text: "+text)
 	assert.Equal(t, true, info.Confidence() > minConfidence)
+}
+
+func ensureClassifiedTextNamed(t *testing.T, text string, expectedEnglishName string, expectedSelfName string) {
+	info := FromString(text)
+
+	assert.Equal(t, expectedEnglishName, info.LanguageName(), "Wrong language name: "+text)
+	assert.Equal(t, expectedSelfName, info.SelfName(), "Wrong self lang name: "+text)
 }

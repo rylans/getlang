@@ -5,6 +5,8 @@
 package getlang
 
 import (
+	"golang.org/x/text/language"
+	"golang.org/x/text/language/display"
 	"io"
 	"io/ioutil"
 	"math"
@@ -23,6 +25,7 @@ type inUnicodeRange func(r rune) bool
 type Info struct {
 	lang        string
 	probability float64
+	langTag     language.Tag
 }
 
 // LanguageCode returns the ISO 639-1 code for the detected language
@@ -37,37 +40,12 @@ func (info Info) Confidence() float64 {
 
 // LanguageName returns the English name of the detected language
 func (info Info) LanguageName() string {
-	switch info.lang {
-	case "en":
-		return "English"
-	case "es":
-		return "Spanish"
-	case "pt":
-		return "Portuguese"
-	case "hu":
-		return "Hungarian"
-	case "de":
-		return "German"
-	case "it":
-		return "Italian"
-	case "pl":
-		return "Polish"
-	case "ru":
-		return "Russian"
-	case "uk":
-		return "Ukrainian"
-	case "ko":
-		return "Korean"
-	case "zh":
-		return "Chinese"
-	case "ja":
-		return "Japanese"
-	case "fr":
-		return "French"
-	case undetermined:
-		return "Undetermined language"
-	}
-	panic("Missing language code " + info.lang)
+	return display.English.Tags().Name(info.langTag)
+}
+
+// SelfName returns the name of the language in the language itself
+func (info Info) SelfName() string {
+	return display.Self.Name(info.langTag)
 }
 
 // FromReader detects the language from an io.Reader
@@ -124,7 +102,7 @@ func FromString(text string) Info {
 
 	smx := softmax(langMatches)
 	maxk := maxkey(langMatches)
-	return Info{maxk, smx[maxk]}
+	return Info{maxk, smx[maxk], language.MustParse(maxk)}
 }
 
 func softmax(mapping map[string]int) map[string]float64 {

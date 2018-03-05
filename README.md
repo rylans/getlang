@@ -44,6 +44,7 @@ func main(){
 | Chinese        | zh        |
 | Japanese       | ja        |
 | Korean         | ko        |
+| French         | fr        |
 
 ## Documentation
 [getlang on godoc](https://godoc.org/github.com/rylans/getlang)

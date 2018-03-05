@@ -62,6 +62,8 @@ func (info Info) LanguageName() string {
 		return "Chinese"
 	case "ja":
 		return "Japanese"
+	case "fr":
+		return "French"
 	case undetermined:
 		return "Undetermined language"
 	}
@@ -92,6 +94,7 @@ func FromString(text string) Info {
 		"pl": pl,
 		"ru": ru,
 		"uk": uk,
+		"fr": fr,
 	}
 
 	scripts := map[string]inUnicodeRange{

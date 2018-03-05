@@ -38,7 +38,7 @@ func TestGermanMixedEnglish(t *testing.T) {
 		t,
 		"Wenn wir jemand grüßen wollen, sagen wir 'How are you doing?'",
 		"de",
-		0.95)
+		0.85)
 }
 
 func TestEnglishMixedGerman(t *testing.T) {
@@ -46,7 +46,7 @@ func TestEnglishMixedGerman(t *testing.T) {
 		t,
 		"If you wanted to greet someone in this language, you'd say 'wie geht es'",
 		"en",
-		0.65)
+		0.45)
 }
 
 func TestEnglishMixedUkrainian(t *testing.T) {
@@ -110,6 +110,14 @@ func TestUkrainianPhraseUDHR(t *testing.T) {
 		t,
 		"Всі люди народжуються вільними і рівними у своїй гідності та правах",
 		"uk",
+		0.95)
+}
+
+func TestFrenchPhraseUDHR(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"Tous les êtres humains naissent libres et égaux",
+		"fr",
 		0.95)
 }
 

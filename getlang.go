@@ -73,6 +73,9 @@ func FromString(text string) Info {
 		"ru": ru,
 		"uk": uk,
 		"fr": fr,
+		"ar": ar,
+		"bn": bn,
+		"hi": hi,
 	}
 
 	scripts := map[string]inUnicodeRange{

@@ -60,7 +60,7 @@ func TestEnglishMixedGerman(t *testing.T) {
 		t,
 		"If you wanted to greet someone in this language, you'd say 'wie geht es'",
 		"en",
-		0.45)
+		0.35)
 }
 
 func TestEnglishMixedUkrainian(t *testing.T) {
@@ -124,7 +124,7 @@ func TestUkrainianPhraseUDHR(t *testing.T) {
 		t,
 		"Всі люди народжуються вільними і рівними у своїй гідності та правах",
 		"uk",
-		0.95)
+		0.80)
 }
 
 func TestFrenchPhraseUDHR(t *testing.T) {
@@ -171,6 +171,56 @@ func TestChinesePhrase(t *testing.T) {
 		text,
 		"Chinese",
 		"中文")
+}
+
+func TestArabicPhrase(t *testing.T) {
+	text := "اهتمامًا بذلك المشروع. المجموعة الوحيدة التي "
+	lang := "العربية"
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"ar",
+		0.55)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Arabic",
+		lang)
+}
+
+func TestBanglaPhrase(t *testing.T) {
+	text := "এই গবেষণায় রত, তাঁদেরকে বলা হয় ভাষাবিজ্ঞানী।ভাষাবিজ্ঞানীরা নৈর্ব্যক্তিক"
+	lang := "বাংলা"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"bn",
+		0.85)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Bangla",
+		lang)
+}
+
+func TestHindiPhrase(t *testing.T) {
+	text := "ब तक लगातार चल रहा है। इसका प्रसारण प्रत्येक शनिवार और रविवार को रात 10 बजे होता है। इसका पुनः प्रसारण सोनी पल चैनल पर रात 9 बजे होता"
+	lang := "हिन्दी"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"hi",
+		0.85)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Hindi",
+		lang)
 }
 
 func TestNonsense(t *testing.T) {

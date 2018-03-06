@@ -1,10 +1,15 @@
 # getlang
 
-[![GoDoc](https://godoc.org/github.com/rylans/getlang?status.svg)](https://godoc.org/github.com/rylans/getlang) [![Go Report Card](https://goreportcard.com/badge/github.com/rylans/getlang)](https://goreportcard.com/report/github.com/rylans/getlang) [![Build Status](https://travis-ci.org/rylans/getlang.svg?branch=master)](https://travis-ci.org/rylans/getlang)
+[![GoDoc](https://godoc.org/github.com/rylans/getlang?status.svg)](https://godoc.org/github.com/rylans/getlang) [![Go Report Card](https://goreportcard.com/badge/github.com/rylans/getlang)](https://goreportcard.com/report/github.com/rylans/getlang) [![Build Status](https://travis-ci.org/rylans/getlang.svg?branch=master)](https://travis-ci.org/rylans/getlang) ![cover.run go](https://cover.run/go/github.com/rylans/getlang.svg?tag=golang-1.10)
 
+getlang provides fast natural language detection in Go.
 
-Detect language from text
+## Features
 
+* Offline -- no internet connection required
+* Supports many languages and scripts
+* Provides ISO 639 language codes
+* Fast
 
 ## Getting started
 

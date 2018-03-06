@@ -1,4 +1,4 @@
-// Package getlang provides fast language detection for various languages
+// Package getlang provides fast natural language detection for various languages
 //
 // getlang compares input text to a characteristic profile of each supported language and
 // returns the language that best matches the input text
@@ -18,6 +18,7 @@ const undeterminedRate int = 31
 const undetermined string = "und"
 const rescale = 0.5
 const scriptCountFactor int = 3
+const expOverflow = 7.09e+02
 
 var langs = map[string][]string{
 	"en": en,
@@ -58,6 +59,8 @@ func (info Info) LanguageCode() string {
 }
 
 // Confidence returns a measure of reliability for the language classification
+//
+// The output value is in the range [0, 1.0] inclusive
 func (info Info) Confidence() float64 {
 	return info.probability
 }
@@ -75,13 +78,9 @@ func (info Info) SelfName() string {
 // FromReader detects the language from an io.Reader
 //
 // This function will read all bytes until an EOF is reached
-func FromReader(reader io.Reader) Info {
+func FromReader(reader io.Reader) (Info, error) {
 	bytes, err := ioutil.ReadAll(reader)
-	if err != nil {
-		panic("Error reading from reader")
-	}
-
-	return FromString(string(bytes))
+	return FromString(string(bytes)), err
 }
 
 // FromString detects the language from the given string
@@ -106,11 +105,19 @@ func FromString(text string) Info {
 func softmax(mapping map[string]int) map[string]float64 {
 	softmaxmap := make(map[string]float64)
 	denom := 0.0
+	overflowed := false
 	for _, v := range mapping {
 		denom += math.Exp(float64(v) * rescale)
+		if v > expOverflow {
+			overflowed = true
+		}
 	}
 	for k := range mapping {
-		softmaxmap[k] = math.Exp(rescale*float64(mapping[k])) / denom
+		if !overflowed {
+			softmaxmap[k] = math.Exp(rescale*float64(mapping[k])) / denom
+		} else {
+			softmaxmap[k] = 1.0
+		}
 	}
 	return softmaxmap
 }

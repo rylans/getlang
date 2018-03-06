@@ -7,12 +7,22 @@ import (
 )
 
 func TestEmptyStringFromReader(t *testing.T) {
-	info := FromReader(strings.NewReader(""))
+	info, _ := FromReader(strings.NewReader(""))
 	assert.Equal(t, "und", info.LanguageCode())
 }
 
+func TestEnglishPhraseFromBigReader(t *testing.T) {
+	largeText := ""
+	for i := 0; i < 800; i++ {
+		largeText += "this is more language as you can see "
+	}
+	info, _ := FromReader(strings.NewReader(largeText))
+	assert.Equal(t, "en", info.LanguageCode())
+	assert.Equal(t, true, info.Confidence() > 0.999)
+}
+
 func TestEnglishPhraseFromReader(t *testing.T) {
-	info := FromReader(strings.NewReader("this is the language"))
+	info, _ := FromReader(strings.NewReader("this is the language"))
 	assert.Equal(t, "en", info.LanguageCode())
 	assert.Equal(t, true, info.Confidence() > 0.75)
 }

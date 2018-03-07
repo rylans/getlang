@@ -6,7 +6,7 @@ import (
 )
 
 func ExampleInfo_Confidence() {
-	short := getlang.FromString("short sentences")
+	short := getlang.FromString("short text")
 	long := getlang.FromString("this sentence is a bit longer")
 	fmt.Println(long.Confidence() > short.Confidence())
 	// Output: true

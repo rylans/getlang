@@ -224,7 +224,7 @@ func TestHindiPhrase(t *testing.T) {
 		t,
 		text,
 		"hi",
-		0.85)
+		0.75)
 
 	ensureClassifiedTextNamed(
 		t,
@@ -297,6 +297,23 @@ func TestThaiPhrase(t *testing.T) {
 		t,
 		text,
 		"Thai",
+		lang)
+}
+
+func TestVietnamesePhrase(t *testing.T) {
+	text := "Truyền thông Việt Nam vào dịp này đăng bài ký tên ông"
+	lang := "Tiếng Việt"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"vi",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Vietnamese",
 		lang)
 }
 

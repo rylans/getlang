@@ -14,7 +14,7 @@ import (
 	"unicode"
 )
 
-const undeterminedRate int = 31
+const undeterminedRate int = 41
 const undetermined string = "und"
 const rescale = 0.5
 const scriptCountFactor int = 3
@@ -34,6 +34,7 @@ var langs = map[string][]string{
 	"ar": ar,
 	"bn": bn,
 	"hi": hi,
+	"vi": vi,
 }
 
 var scripts = map[string][]*unicode.RangeTable{

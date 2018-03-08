@@ -317,6 +317,40 @@ func TestArmenianPhrase(t *testing.T) {
 		lang)
 }
 
+func TestSerbianLatinPhrase(t *testing.T) {
+	text := "ljudi ne znaju jer me uglavnom vide"
+	lang := "srpskohrvatski"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"sr",
+		0.85)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Serbo-Croatian",
+		lang)
+}
+
+func TestSerbianCyrillicPhrase(t *testing.T) {
+	text := "Код животиња су ове реакције посебно важне при зарастању рана"
+	lang := "српски"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"sr",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Serbian (Cyrillic)",
+		lang)
+}
+
 func TestVietnamesePhrase(t *testing.T) {
 	text := "Truyền thông Việt Nam vào dịp này đăng bài ký tên ông"
 	lang := "Tiếng Việt"

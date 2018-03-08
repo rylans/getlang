@@ -13,7 +13,7 @@ func ExampleInfo_Confidence() {
 }
 
 func ExampleInfo_LanguageCode() {
-	fmt.Println(getlang.FromString("статей на русском языке").LanguageCode())
+	fmt.Println(getlang.FromString("статей на русском").LanguageCode())
 	// Output: ru
 }
 

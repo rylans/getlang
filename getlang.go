@@ -21,18 +21,20 @@ const scriptCountFactor int = 3
 const expOverflow = 7.09e+02
 
 var langs = map[string][]string{
-	"en": en,
-	"es": es,
-	"pt": pt,
-	"hu": hu,
-	"de": de,
-	"it": it,
-	"pl": pl,
-	"ru": ru,
-	"uk": uk,
-	"fr": fr,
-	"hi": hi,
-	"vi": vi,
+	"en":      en,
+	"es":      es,
+	"pt":      pt,
+	"hu":      hu,
+	"de":      de,
+	"it":      it,
+	"pl":      pl,
+	"ru":      ru,
+	"uk":      uk,
+	"fr":      fr,
+	"hi":      hi,
+	"vi":      vi,
+	"sr-Latn": srLatin,
+	"sr-Cyrl": srCyr,
 }
 
 var scripts = map[string][]*unicode.RangeTable{
@@ -57,7 +59,11 @@ type Info struct {
 
 // LanguageCode returns the ISO 639-1 code for the detected language
 func (info Info) LanguageCode() string {
-	return info.lang
+	codelen := len(info.lang)
+	if codelen < 4 {
+		return info.lang
+	}
+	return info.lang[:2]
 }
 
 // Confidence returns a measure of reliability for the language classification

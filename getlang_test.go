@@ -300,6 +300,23 @@ func TestThaiPhrase(t *testing.T) {
 		lang)
 }
 
+func TestArmenianPhrase(t *testing.T) {
+	text := "ըստ Գրիգորյան օրացույցի"
+	lang := "հայերեն"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"hy",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Armenian",
+		lang)
+}
+
 func TestVietnamesePhrase(t *testing.T) {
 	text := "Truyền thông Việt Nam vào dịp này đăng bài ký tên ông"
 	lang := "Tiếng Việt"

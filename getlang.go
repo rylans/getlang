@@ -31,8 +31,6 @@ var langs = map[string][]string{
 	"ru": ru,
 	"uk": uk,
 	"fr": fr,
-	"ar": ar,
-	"bn": bn,
 	"hi": hi,
 	"vi": vi,
 }
@@ -45,6 +43,8 @@ var scripts = map[string][]*unicode.RangeTable{
 	"he": []*unicode.RangeTable{unicode.Hebrew},
 	"gu": []*unicode.RangeTable{unicode.Gujarati},
 	"th": []*unicode.RangeTable{unicode.Thai},
+	"ar": []*unicode.RangeTable{unicode.Arabic},
+	"bn": []*unicode.RangeTable{unicode.Bengali},
 }
 
 // Info is the language detection result

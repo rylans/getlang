@@ -58,6 +58,8 @@ func main(){
 | Gujarati       | gu        |
 | Thai           | th        |
 | Vietnamese     | vi        |
+| Armenian       | hy        |
+| Serbian        | sr        |
 
 ## Documentation
 [getlang on godoc](https://godoc.org/github.com/rylans/getlang)

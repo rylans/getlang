@@ -7,7 +7,7 @@ getlang provides fast natural language detection in Go.
 ## Features
 
 * Offline -- no internet connection required
-* Supports many languages and scripts
+* Supports [23 languages](https://github.com/rylans/getlang/blob/master/LANGUAGES.md)
 * Provides ISO 639 language codes
 * Fast
 
@@ -32,34 +32,6 @@ func main(){
   fmt.Println(info.LanguageCode(), info.Confidence())
 }
 ```
-
-## Supported Languages
-
-| Language       | ISO 639-1 | 
-| -------------- | --------- |
-| English        | en        |
-| Spanish        | es        |
-| Portuguese     | pt        |
-| Italian        | it        |
-| Hungarian      | hu        |
-| Polish         | pl        |
-| German         | de        |
-| Russian        | ru        |
-| Ukrainian      | uk        |
-| Chinese        | zh        |
-| Japanese       | ja        |
-| Korean         | ko        |
-| French         | fr        |
-| Hindi          | hi        |
-| Bengali (Bangla) | bn      |
-| Arabic         | ar        |
-| Greek          | el        |
-| Hebrew         | he        |
-| Gujarati       | gu        |
-| Thai           | th        |
-| Vietnamese     | vi        |
-| Armenian       | hy        |
-| Serbian        | sr        |
 
 ## Documentation
 [getlang on godoc](https://godoc.org/github.com/rylans/getlang)

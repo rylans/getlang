@@ -368,6 +368,23 @@ func TestVietnamesePhrase(t *testing.T) {
 		lang)
 }
 
+func TestTeluguPhrase(t *testing.T) {
+	text := "భారతదేశంలోని దక్షిణ"
+	lang := "తెలుగు"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"te",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Telugu",
+		lang)
+}
+
 func TestNonsense(t *testing.T) {
 	text := "wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z"
 	ensureClassifiedWithConfidence(

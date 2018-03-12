@@ -29,3 +29,4 @@ Fast natural language detection.
 | Vietnamese     | vi        |
 | Armenian       | hy        |
 | Serbian        | sr        |
+| Telugu         | te        |

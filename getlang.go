@@ -48,6 +48,7 @@ var scripts = map[string][]*unicode.RangeTable{
 	"ar": []*unicode.RangeTable{unicode.Arabic},
 	"bn": []*unicode.RangeTable{unicode.Bengali},
 	"hy": []*unicode.RangeTable{unicode.Armenian},
+	"te": []*unicode.RangeTable{unicode.Telugu},
 }
 
 // Info is the language detection result

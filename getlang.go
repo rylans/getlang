@@ -17,7 +17,7 @@ import (
 const undeterminedRate int = 41
 const undetermined string = "und"
 const rescale = 0.5
-const scriptCountFactor int = 3
+const scriptCountFactor int = 2
 const expOverflow = 7.09e+02
 
 var langs = map[string][]string{
@@ -94,7 +94,7 @@ func FromReader(reader io.Reader) (Info, error) {
 // FromString detects the language from the given string
 func FromString(text string) Info {
 	langMatches := make(map[string]int)
-	langMatches[undetermined] = 2
+	langMatches[undetermined] = 1
 
 	trigs := sortedTrigs(text)
 	for k, v := range langs {

@@ -159,7 +159,7 @@ func TestJapanesePhrase(t *testing.T) {
 		t,
 		text,
 		"ja",
-		0.95)
+		0.90)
 
 	ensureClassifiedTextNamed(
 		t,

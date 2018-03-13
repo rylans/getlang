@@ -46,6 +46,7 @@ var scripts = map[string][]*unicode.RangeTable{
 	"hy": []*unicode.RangeTable{unicode.Armenian},
 	"ja": []*unicode.RangeTable{unicode.Hiragana, unicode.Katakana},
 	"ko": []*unicode.RangeTable{unicode.Hangul},
+	"ta": []*unicode.RangeTable{unicode.Tamil},
 	"te": []*unicode.RangeTable{unicode.Telugu},
 	"th": []*unicode.RangeTable{unicode.Thai},
 	"zh": []*unicode.RangeTable{unicode.Han},

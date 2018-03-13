@@ -385,6 +385,23 @@ func TestTeluguPhrase(t *testing.T) {
 		lang)
 }
 
+func TestTamilPhrase(t *testing.T) {
+	text := " நீளமான, கிளைக்காத"
+	lang := "தமிழ்"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"ta",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Tamil",
+		lang)
+}
+
 func TestNonsense(t *testing.T) {
 	text := "wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z"
 	ensureClassifiedWithConfidence(

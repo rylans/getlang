@@ -6,27 +6,29 @@ Fast natural language detection.
 
 | Language       | ISO 639-1 | 
 | -------------- | --------- |
+| Arabic         | ar        |
+| Bengali (Bangla) | bn      |
+| German         | de        |
+| Greek          | el        |
 | English        | en        |
 | Spanish        | es        |
-| Portuguese     | pt        |
-| Italian        | it        |
+| French         | fr        |
+| Hebrew         | he        |
+| Hindi          | hi        |
 | Hungarian      | hu        |
+| Armenian       | hy        |
+| Gujarati       | gu        |
+| Italian        | it        |
 | Polish         | pl        |
-| German         | de        |
-| Russian        | ru        |
-| Ukrainian      | uk        |
-| Chinese        | zh        |
+| Portuguese     | pt        |
 | Japanese       | ja        |
 | Korean         | ko        |
-| French         | fr        |
-| Hindi          | hi        |
-| Bengali (Bangla) | bn      |
-| Arabic         | ar        |
-| Greek          | el        |
-| Hebrew         | he        |
-| Gujarati       | gu        |
-| Thai           | th        |
-| Vietnamese     | vi        |
-| Armenian       | hy        |
-| Serbian        | sr        |
+| Tamil		 | ta        |
 | Telugu         | te        |
+| Thai           | th        |
+| Russian        | ru        |
+| Serbian        | sr        |
+| Vietnamese     | vi        |
+| Ukrainian      | uk        |
+| Chinese        | zh        |
+

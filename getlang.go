@@ -21,34 +21,34 @@ const scriptCountFactor int = 2
 const expOverflow = 7.09e+02
 
 var langs = map[string][]string{
+	"de":      de,
 	"en":      en,
 	"es":      es,
-	"pt":      pt,
-	"hu":      hu,
-	"de":      de,
-	"it":      it,
-	"pl":      pl,
-	"ru":      ru,
-	"uk":      uk,
 	"fr":      fr,
 	"hi":      hi,
-	"vi":      vi,
+	"hu":      hu,
+	"it":      it,
+	"pl":      pl,
+	"pt":      pt,
+	"ru":      ru,
 	"sr-Latn": srLatin,
 	"sr-Cyrl": srCyr,
+	"uk":      uk,
+	"vi":      vi,
 }
 
 var scripts = map[string][]*unicode.RangeTable{
-	"ko": []*unicode.RangeTable{unicode.Hangul},
-	"zh": []*unicode.RangeTable{unicode.Han},
-	"ja": []*unicode.RangeTable{unicode.Hiragana, unicode.Katakana},
-	"el": []*unicode.RangeTable{unicode.Greek},
-	"he": []*unicode.RangeTable{unicode.Hebrew},
-	"gu": []*unicode.RangeTable{unicode.Gujarati},
-	"th": []*unicode.RangeTable{unicode.Thai},
 	"ar": []*unicode.RangeTable{unicode.Arabic},
 	"bn": []*unicode.RangeTable{unicode.Bengali},
+	"el": []*unicode.RangeTable{unicode.Greek},
+	"gu": []*unicode.RangeTable{unicode.Gujarati},
+	"he": []*unicode.RangeTable{unicode.Hebrew},
 	"hy": []*unicode.RangeTable{unicode.Armenian},
+	"ja": []*unicode.RangeTable{unicode.Hiragana, unicode.Katakana},
+	"ko": []*unicode.RangeTable{unicode.Hangul},
 	"te": []*unicode.RangeTable{unicode.Telugu},
+	"th": []*unicode.RangeTable{unicode.Thai},
+	"zh": []*unicode.RangeTable{unicode.Han},
 }
 
 // Info is the language detection result

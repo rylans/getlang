@@ -76,7 +76,7 @@ func TestEnglishMixedGerman(t *testing.T) {
 func TestEnglishMixedUkrainian(t *testing.T) {
 	ensureClassifiedWithConfidence(
 		t,
-		"the best thing to say is своїй гідності in my opinon.",
+		"the best thing to say is своїй гідності in my opinon of this.",
 		"en",
 		0.55)
 }
@@ -399,6 +399,23 @@ func TestTamilPhrase(t *testing.T) {
 		t,
 		text,
 		"Tamil",
+		lang)
+}
+
+func TestTagalogPhrase(t *testing.T) {
+	text := "ano ang nangyayari sa iyo at ang mah-ina mo ay hindi mo"
+	lang := "Filipino"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"tl",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Filipino",
 		lang)
 }
 

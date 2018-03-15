@@ -25,6 +25,7 @@ Fast natural language detection.
 | Korean         | ko        |
 | Tamil		 | ta        |
 | Telugu         | te        |
+| Tagalog        | tl        |
 | Thai           | th        |
 | Russian        | ru        |
 | Serbian        | sr        |

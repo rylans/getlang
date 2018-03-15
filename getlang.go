@@ -33,6 +33,7 @@ var langs = map[string][]string{
 	"ru":      ru,
 	"sr-Latn": srLatin,
 	"sr-Cyrl": srCyr,
+	"tl":      tl,
 	"uk":      uk,
 	"vi":      vi,
 }

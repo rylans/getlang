@@ -26,3 +26,8 @@ func ExampleInfo_SelfName() {
 	fmt.Println(getlang.FromString("何ですか？").SelfName())
 	// Output: 日本語
 }
+
+func ExampleInfo_Tag() {
+	fmt.Println(getlang.FromString("何ですか？").Tag().IsRoot())
+	// Output: false
+}

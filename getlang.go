@@ -60,6 +60,11 @@ type Info struct {
 	langTag     language.Tag
 }
 
+// Tag returns the language.Tag of the detected lanuage
+func (info Info) Tag() language.Tag {
+	return info.langTag
+}
+
 // LanguageCode returns the ISO 639-1 code for the detected language
 func (info Info) LanguageCode() string {
 	codelen := len(info.lang)

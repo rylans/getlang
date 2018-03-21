@@ -27,6 +27,15 @@ func TestEnglishPhraseFromReader(t *testing.T) {
 	assert.Equal(t, true, info.Confidence() > 0.75)
 }
 
+func TestEnglishPhraseTag(t *testing.T) {
+	info, _ := FromReader(strings.NewReader("this is the language"))
+	tag := info.Tag()
+
+	assert.Equal(t, "en", tag.String())
+	assert.Equal(t, false, tag.IsRoot())
+	assert.Equal(t, true, tag.Parent().IsRoot())
+}
+
 func TestEnglishPhraseUSDI(t *testing.T) {
 	text := "We hold these truths to be self-evident, that all men are created equal"
 	ensureClassifiedWithConfidence(

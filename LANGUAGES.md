@@ -19,6 +19,7 @@ Fast natural language detection.
 | Armenian       | hy        |
 | Gujarati       | gu        |
 | Italian        | it        |
+| Dutch          | nl        |
 | Polish         | pl        |
 | Portuguese     | pt        |
 | Japanese       | ja        |

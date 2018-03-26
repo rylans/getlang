@@ -66,14 +66,6 @@ func TestGermanPhraseUSDI(t *testing.T) {
 		"Deutsch")
 }
 
-func TestGermanMixedEnglish(t *testing.T) {
-	ensureClassifiedWithConfidence(
-		t,
-		"Wenn wir jemand grüßen wollen, sagen wir 'How are you doing?'",
-		"de",
-		0.85)
-}
-
 func TestEnglishMixedGerman(t *testing.T) {
 	ensureClassifiedWithConfidence(
 		t,
@@ -425,6 +417,23 @@ func TestTagalogPhrase(t *testing.T) {
 		t,
 		text,
 		"Filipino",
+		lang)
+}
+
+func TestDutchPhrase(t *testing.T) {
+	text := "Een ieder heeft, waar hij zich ook bevindt, het recht als persoon erkend te worden voor de wet"
+	lang := "Nederlands"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"nl",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Dutch",
 		lang)
 }
 

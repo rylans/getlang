@@ -31,6 +31,7 @@ var langs = map[string][]string{
 	"nl":      nl,
 	"pl":      pl,
 	"pt":      pt,
+	"pa":      pa,
 	"ru":      ru,
 	"sr-Latn": srLatin,
 	"sr-Cyrl": srCyr,

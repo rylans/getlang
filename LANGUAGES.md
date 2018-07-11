@@ -4,7 +4,7 @@ Fast natural language detection.
 
 ## Supported Languages
 
-| Language       | ISO 639-1 | 
+| Language       | ISO 639-1 |
 | -------------- | --------- |
 | Arabic         | ar        |
 | Bengali (Bangla) | bn      |
@@ -22,9 +22,10 @@ Fast natural language detection.
 | Dutch          | nl        |
 | Polish         | pl        |
 | Portuguese     | pt        |
+| Panjabi        | pa        |
 | Japanese       | ja        |
 | Korean         | ko        |
-| Tamil		 | ta        |
+| Tamil		       | ta        |
 | Telugu         | te        |
 | Tagalog        | tl        |
 | Thai           | th        |
@@ -33,4 +34,3 @@ Fast natural language detection.
 | Vietnamese     | vi        |
 | Ukrainian      | uk        |
 | Chinese        | zh        |
-

@@ -107,7 +107,7 @@ func TestPolishPhraseUDHR(t *testing.T) {
 }
 
 func TestPanjabiPhrase(t *testing.T) {
-	text := "ਪੰਜਾਬੀ"
+	text := "ਮੇਰਾ ਨਾਮ ਭਰਤ ਹੈ."
 	lang := "ਪੰਜਾਬੀ"
 
 	ensureClassifiedWithConfidence(

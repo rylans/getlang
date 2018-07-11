@@ -7,7 +7,7 @@ getlang provides fast natural language detection in Go.
 ## Features
 
 * Offline -- no internet connection required
-* Supports [27 languages](https://github.com/rylans/getlang/blob/master/LANGUAGES.md)
+* Supports [28 languages](https://github.com/rylans/getlang/blob/master/LANGUAGES.md)
 * Provides ISO 639 language codes
 * Fast
 
@@ -42,4 +42,3 @@ func main(){
 ## Acknowledgements and Citations
 * Thanks to [abadojack](https://github.com/abadojack) for the trigram generation logic in whatlanggo
 * Cavnar, William B., and John M. Trenkle. "N-gram-based text categorization." Ann arbor mi 48113.2 (1994): 161-175.
-

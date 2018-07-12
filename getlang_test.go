@@ -106,6 +106,23 @@ func TestPolishPhraseUDHR(t *testing.T) {
 		0.95)
 }
 
+func TestPanjabiPhrase(t *testing.T) {
+	text := "ਮੇਰਾ ਨਾਮ ਭਰਤ ਹੈ."
+	lang := "ਪੰਜਾਬੀ"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"pa",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Punjabi",
+		lang)
+}
+
 func TestHungarianPhraseUDHR(t *testing.T) {
 	ensureClassifiedWithConfidence(
 		t,

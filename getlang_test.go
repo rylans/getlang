@@ -119,7 +119,7 @@ func TestPanjabiPhrase(t *testing.T) {
 	ensureClassifiedTextNamed(
 		t,
 		text,
-		"Panjabi",
+		"Punjabi",
 		lang)
 }
 

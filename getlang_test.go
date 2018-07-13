@@ -106,7 +106,7 @@ func TestPolishPhraseUDHR(t *testing.T) {
 		0.95)
 }
 
-func TestPanjabiPhrase(t *testing.T) {
+func TestPunjabiPhrase(t *testing.T) {
 	text := "ਮੇਰਾ ਨਾਮ ਭਰਤ ਹੈ."
 	lang := "ਪੰਜਾਬੀ"
 
@@ -451,6 +451,23 @@ func TestDutchPhrase(t *testing.T) {
 		t,
 		text,
 		"Dutch",
+		lang)
+}
+
+func TestKannadaPhrase(t *testing.T) {
+	text := "ನನ್ನ ಹೆಸರು ಭಾರತ್."
+	lang := "ಕನ್ನಡ"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"kn",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Kannada",
 		lang)
 }
 

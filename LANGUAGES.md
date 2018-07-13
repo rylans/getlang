@@ -22,8 +22,9 @@ Fast natural language detection.
 | Dutch          | nl        |
 | Polish         | pl        |
 | Portuguese     | pt        |
-| Panjabi        | pa        |
+| Punjabi        | pa        |
 | Japanese       | ja        |
+| Kannada        | ka        |
 | Korean         | ko        |
 | Tamil		       | ta        |
 | Telugu         | te        |

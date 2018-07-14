@@ -471,6 +471,7 @@ func TestKannadaPhrase(t *testing.T) {
 		lang)
 }
 
+<<<<<<< HEAD
 func TestMalayalamPhrase(t *testing.T) {
 	text := "എന്റെ പേര് ഭാരത്."
 	lang := "മലയാളം"
@@ -488,6 +489,8 @@ func TestMalayalamPhrase(t *testing.T) {
 		lang)
 }
 
+=======
+>>>>>>> upstream/master
 func TestNonsense(t *testing.T) {
 	text := "wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z"
 	ensureClassifiedWithConfidence(

@@ -26,6 +26,7 @@ Fast natural language detection.
 | Japanese       | ja        |
 | Kannada        | ka        |
 | Korean         | ko        |
+| Malayalam      | ml        |
 | Tamil		       | ta        |
 | Telugu         | te        |
 | Tagalog        | tl        |

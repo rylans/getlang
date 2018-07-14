@@ -7,7 +7,7 @@ getlang provides fast natural language detection in Go.
 ## Features
 
 * Offline -- no internet connection required
-* Supports [29 languages](https://github.com/rylans/getlang/blob/master/LANGUAGES.md)
+* Supports [30 languages](https://github.com/rylans/getlang/blob/master/LANGUAGES.md)
 * Provides ISO 639 language codes
 * Fast
 

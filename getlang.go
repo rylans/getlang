@@ -28,6 +28,7 @@ var langs = map[string][]string{
 	"hi":      hi,
 	"hu":      hu,
 	"it":      it,
+	"mr":      mr,
 	"nl":      nl,
 	"pl":      pl,
 	"pt":      pt,

@@ -488,6 +488,23 @@ func TestMalayalamPhrase(t *testing.T) {
 		lang)
 }
 
+func TestMarathiPhrase(t *testing.T) {
+	text := "माझे नाव भरत आहे."
+	lang := "मराठी"
+
+	ensureClassifiedWithConfidence(
+		t,
+		text,
+		"mr",
+		0.95)
+
+	ensureClassifiedTextNamed(
+		t,
+		text,
+		"Marathi",
+		lang)
+}
+
 func TestNonsense(t *testing.T) {
 	text := "wep lvna eeii vl jkk azc nmn iuah ppl zccl c%l aa1z"
 	ensureClassifiedWithConfidence(

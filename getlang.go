@@ -39,21 +39,32 @@ var langs = map[string][]string{
 	"vi":      vi,
 }
 
-var scripts = map[string][]*unicode.RangeTable{
-	"ar": []*unicode.RangeTable{unicode.Arabic},
-	"bn": []*unicode.RangeTable{unicode.Bengali},
-	"el": []*unicode.RangeTable{unicode.Greek},
-	"gu": []*unicode.RangeTable{unicode.Gujarati},
-	"he": []*unicode.RangeTable{unicode.Hebrew},
-	"hy": []*unicode.RangeTable{unicode.Armenian},
-	"ja": []*unicode.RangeTable{unicode.Hiragana, unicode.Katakana},
-	"kn": []*unicode.RangeTable{unicode.Kannada},
-	"ko": []*unicode.RangeTable{unicode.Hangul},
-	"pa": []*unicode.RangeTable{unicode.Gurmukhi},
-	"ta": []*unicode.RangeTable{unicode.Tamil},
-	"te": []*unicode.RangeTable{unicode.Telugu},
-	"th": []*unicode.RangeTable{unicode.Thai},
-	"zh": []*unicode.RangeTable{unicode.Han},
+// csUnicodeLetters are unicode letters that none of other countries are using
+var csUnicodeLetters = &unicode.RangeTable{
+	R16: []unicode.Range16{
+		{0x010c, 0x010f, 1}, // Č, č, Ď, ď
+		{0x011a, 0x011b, 1}, // Ě, ě
+		{0x0158, 0x0161, 1}, // Ř, ř, Š, š
+		{0x016e, 0x016f, 1}, // Ů, ů
+	},
+}
+
+var scripts = map[string]unicodeBlocks{
+	"ar": {[]*unicode.RangeTable{unicode.Arabic}, scriptCountFactor},
+	"bn": {[]*unicode.RangeTable{unicode.Bengali}, scriptCountFactor},
+	"el": {[]*unicode.RangeTable{unicode.Greek}, scriptCountFactor},
+	"gu": {[]*unicode.RangeTable{unicode.Gujarati}, scriptCountFactor},
+	"he": {[]*unicode.RangeTable{unicode.Hebrew}, scriptCountFactor},
+	"hy": {[]*unicode.RangeTable{unicode.Armenian}, scriptCountFactor},
+	"ja": {[]*unicode.RangeTable{unicode.Hiragana, unicode.Katakana}, scriptCountFactor},
+	"kn": {[]*unicode.RangeTable{unicode.Kannada}, scriptCountFactor},
+	"ko": {[]*unicode.RangeTable{unicode.Hangul}, scriptCountFactor},
+	"pa": {[]*unicode.RangeTable{unicode.Gurmukhi}, scriptCountFactor},
+	"ta": {[]*unicode.RangeTable{unicode.Tamil}, scriptCountFactor},
+	"te": {[]*unicode.RangeTable{unicode.Telugu}, scriptCountFactor},
+	"th": {[]*unicode.RangeTable{unicode.Thai}, scriptCountFactor},
+	"zh": {[]*unicode.RangeTable{unicode.Han}, scriptCountFactor},
+	"cs": {[]*unicode.RangeTable{csUnicodeLetters}, 10},
 }
 
 // Info is the language detection result
@@ -108,12 +119,12 @@ func FromString(text string) Info {
 	langMatches[undetermined] = 1
 
 	trigs := sortedTrigs(text)
-	for k, v := range langs {
-		matchWith(k, trigs, v, langMatches)
+	for name, profile := range langs {
+		matchWith(name, trigs, profile, langMatches)
 	}
 
-	for k, v := range scripts {
-		matchScript(k, text, langMatches, v...)
+	for name, blocks := range scripts {
+		matchScript(name, text, langMatches, blocks)
 	}
 
 	smx := softmax(langMatches)
@@ -153,10 +164,15 @@ func maxkey(mapping map[string]int) string {
 	return key
 }
 
-func matchScript(langname string, text string, matches map[string]int, ranges ...*unicode.RangeTable) {
+type unicodeBlocks struct {
+	rangeTables []*unicode.RangeTable
+	weight      int
+}
+
+func matchScript(langname string, text string, matches map[string]int, ranges unicodeBlocks) {
 	for _, rune := range text {
-		if unicode.In(rune, ranges...) {
-			matches[langname] += scriptCountFactor
+		if unicode.In(rune, ranges.rangeTables...) {
+			matches[langname] += ranges.weight
 		}
 	}
 }

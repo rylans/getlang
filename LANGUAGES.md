@@ -10,6 +10,7 @@ Fast natural language detection.
 | Bengali (Bangla) | bn      |
 | German         | de        |
 | Greek          | el        |
+| Czech          | cs        |
 | English        | en        |
 | Spanish        | es        |
 | French         | fr        |

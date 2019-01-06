@@ -486,6 +486,27 @@ func TestNonsense(t *testing.T) {
 		"")
 }
 
+func TestCzech(t *testing.T) {
+	var tests = []struct {
+		input         string
+		expectedLang  string
+		minConfidence float64
+	}{
+		{"Hlavní město České Republiky je Praha. Kolem mě létají ptáci.", "cs", 0.55},
+		{"Rok 2019 je tady – a můžeme volně podumat nad tím, co nám asi přinese.", "cs", 0.55},
+		{"Sám Nwelati přiznal, že o potížích s přiznáním ví už asi půl roku.", "cs", 0.55},
+		{"Dva měsíce se nic nedělo", "cs", 0.55},
+	}
+
+	for _, test := range tests {
+		ensureClassifiedWithConfidence(
+			t,
+			test.input,
+			test.expectedLang,
+			test.minConfidence)
+	}
+}
+
 func ensureClassifiedWithConfidence(t *testing.T, text string, expectedLang string, minConfidence float64) {
 	info := FromString(text)
 

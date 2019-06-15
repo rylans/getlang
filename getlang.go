@@ -40,20 +40,20 @@ var langs = map[string][]string{
 }
 
 var scripts = map[string][]*unicode.RangeTable{
-	"ar": []*unicode.RangeTable{unicode.Arabic},
-	"bn": []*unicode.RangeTable{unicode.Bengali},
-	"el": []*unicode.RangeTable{unicode.Greek},
-	"gu": []*unicode.RangeTable{unicode.Gujarati},
-	"he": []*unicode.RangeTable{unicode.Hebrew},
-	"hy": []*unicode.RangeTable{unicode.Armenian},
-	"ja": []*unicode.RangeTable{unicode.Hiragana, unicode.Katakana},
-	"kn": []*unicode.RangeTable{unicode.Kannada},
-	"ko": []*unicode.RangeTable{unicode.Hangul},
-	"pa": []*unicode.RangeTable{unicode.Gurmukhi},
-	"ta": []*unicode.RangeTable{unicode.Tamil},
-	"te": []*unicode.RangeTable{unicode.Telugu},
-	"th": []*unicode.RangeTable{unicode.Thai},
-	"zh": []*unicode.RangeTable{unicode.Han},
+	"ar": {unicode.Arabic},
+	"bn": {unicode.Bengali},
+	"el": {unicode.Greek},
+	"gu": {unicode.Gujarati},
+	"he": {unicode.Hebrew},
+	"hy": {unicode.Armenian},
+	"ja": {unicode.Hiragana, unicode.Katakana},
+	"kn": {unicode.Kannada},
+	"ko": {unicode.Hangul},
+	"pa": {unicode.Gurmukhi},
+	"ta": {unicode.Tamil},
+	"te": {unicode.Telugu},
+	"th": {unicode.Thai},
+	"zh": {unicode.Han},
 }
 
 // Info is the language detection result
@@ -63,15 +63,15 @@ type Info struct {
 	langTag     language.Tag
 }
 
-// Tag returns the language.Tag of the detected lanuage
+// Tag returns the language.Tag of the detected language
 func (info Info) Tag() language.Tag {
 	return info.langTag
 }
 
 // LanguageCode returns the ISO 639-1 code for the detected language
 func (info Info) LanguageCode() string {
-	codelen := len(info.lang)
-	if codelen < 4 {
+	codeLen := len(info.lang)
+	if codeLen < 4 {
 		return info.lang
 	}
 	return info.lang[:2]
@@ -116,14 +116,14 @@ func FromString(text string) Info {
 		matchScript(k, text, langMatches, v...)
 	}
 
-	smx := softmax(langMatches)
-	maxk := maxkey(langMatches)
+	smx := softMax(langMatches)
+	maxk := maxKey(langMatches)
 	return Info{maxk, smx[maxk], language.MustParse(maxk)}
 }
 
-func softmax(mapping map[string]int) map[string]float64 {
-	softmaxmap := make(map[string]float64)
-	denom := 0.0
+func softMax(mapping map[string]int) map[string]float64 {
+	softMaxMap := make(map[string]float64)
+	var denom float64
 	overflowed := false
 	for _, v := range mapping {
 		denom += math.Exp(float64(v) * rescale)
@@ -133,17 +133,17 @@ func softmax(mapping map[string]int) map[string]float64 {
 	}
 	for k := range mapping {
 		if !overflowed {
-			softmaxmap[k] = math.Exp(rescale*float64(mapping[k])) / denom
+			softMaxMap[k] = math.Exp(rescale*float64(mapping[k])) / denom
 		} else {
-			softmaxmap[k] = 1.0
+			softMaxMap[k] = 1.0
 		}
 	}
-	return softmaxmap
+	return softMaxMap
 }
 
-func maxkey(mapping map[string]int) string {
-	max := 0
-	key := ""
+func maxKey(mapping map[string]int) string {
+	var max int
+	var key string
 	for k, v := range mapping {
 		if v > max {
 			max = v
@@ -153,24 +153,24 @@ func maxkey(mapping map[string]int) string {
 	return key
 }
 
-func matchScript(langname string, text string, matches map[string]int, ranges ...*unicode.RangeTable) {
-	for _, rune := range text {
-		if unicode.In(rune, ranges...) {
-			matches[langname] += scriptCountFactor
+func matchScript(langName string, text string, matches map[string]int, ranges ...*unicode.RangeTable) {
+	for _, r := range text {
+		if unicode.In(r, ranges...) {
+			matches[langName] += scriptCountFactor
 		}
 	}
 }
 
-func matchWith(langname string, trigs []trigram, langprofile []string, matches map[string]int) {
-	undeterminedCount := 0
+func matchWith(langName string, trigs []trigram, langProfile []string, matches map[string]int) {
+	var undeterminedCount int
 	prof := make(map[string]int)
-	for _, x := range langprofile {
+	for _, x := range langProfile {
 		prof[x] = 1
 	}
 
 	for _, trig := range trigs {
 		if _, exists := prof[trig.trigram]; exists {
-			matches[langname] += trig.count
+			matches[langName] += trig.count
 		} else {
 			undeterminedCount++
 			if (undeterminedCount % undeterminedRate) == 0 {
@@ -195,7 +195,7 @@ func countedTrigrams(text string) map[string]int {
 	for i := 1; i < len(txt); i++ {
 		r3 = txt[i]
 		if !(r2 == ' ' && (r1 == ' ' || r3 == ' ')) {
-			trigram := []rune{}
+			var trigram []rune
 			trigram = append(trigram, r1)
 			trigram = append(trigram, r2)
 			trigram = append(trigram, r3)
@@ -220,7 +220,7 @@ func sortedTrigs(s string) []trigram {
 	counterMap := countedTrigrams(s)
 	trigrams := make([]trigram, len(counterMap))
 
-	i := 0
+	var i int
 	for tg, count := range counterMap {
 		trigrams[i] = trigram{tg, count}
 		i++

@@ -153,7 +153,7 @@ func maxKey(mapping map[string]int) string {
 	return key
 }
 
-func matchScript(langName string, text string, matches map[string]int, ranges ...*unicode.RangeTable) {
+func matchScript(langName, text string, matches map[string]int, ranges ...*unicode.RangeTable) {
 	for _, r := range text {
 		if unicode.In(r, ranges...) {
 			matches[langName] += scriptCountFactor
@@ -181,7 +181,6 @@ func matchWith(langName string, trigs []trigram, langProfile []string, matches m
 }
 
 func countedTrigrams(text string) map[string]int {
-	var r1, r2, r3 rune
 	trigrams := map[string]int{}
 	var txt []rune
 
@@ -190,15 +189,13 @@ func countedTrigrams(text string) map[string]int {
 	}
 	txt = append(txt, ' ')
 
-	r1 = ' '
-	r2 = txt[0]
+	r1, r2 := ' ', txt[0]
+	var r3 rune
 	for i := 1; i < len(txt); i++ {
 		r3 = txt[i]
 		if !(r2 == ' ' && (r1 == ' ' || r3 == ' ')) {
 			var trigram []rune
-			trigram = append(trigram, r1)
-			trigram = append(trigram, r2)
-			trigram = append(trigram, r3)
+			trigram = append(trigram, r1, r2, r3)
 			if trigrams[string(trigram)] == 0 {
 				trigrams[string(trigram)] = 1
 			} else {

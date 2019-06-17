@@ -194,8 +194,7 @@ func countedTrigrams(text string) map[string]int {
 	for i := 1; i < len(txt); i++ {
 		r3 = txt[i]
 		if !(r2 == ' ' && (r1 == ' ' || r3 == ' ')) {
-			var trigram []rune
-			trigram = append(trigram, r1, r2, r3)
+			trigram := []rune{r1, r2, r3}
 			if trigrams[string(trigram)] == 0 {
 				trigrams[string(trigram)] = 1
 			} else {

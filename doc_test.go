@@ -2,6 +2,7 @@ package getlang_test
 
 import (
 	"fmt"
+
 	"github.com/rylans/getlang"
 )
 
@@ -20,6 +21,11 @@ func ExampleInfo_LanguageCode() {
 func ExampleInfo_LanguageName() {
 	fmt.Println(getlang.FromString("何ですか？").LanguageName())
 	// Output: Japanese
+	fmt.Println(getlang.FromString("این یک جمله فارسی است").LanguageName())
+	// Output: Persian
+	fmt.Println(getlang.FromString("هذه جملة عربية").LanguageName())
+	// Output: Arabic
+
 }
 
 func ExampleInfo_SelfName() {
